@@ -19,3 +19,8 @@ A brief walkthrough :-
     3.6. Navigate to different pages
 
 4. The data is stored in Session and Local Storage 
+
+5. Authorization is performed using OAuth2.
+
+6. Username : max Password: geheim
+ 
