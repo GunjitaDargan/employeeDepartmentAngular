@@ -1,0 +1,97 @@
+<div class="heading"><h2>Department Listing Page</h2></div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    
+    
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+      <ul class="navbar-nav mr-auto" >
+        <li class="nav-item" style="padding: 5px;">
+            <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/add-department">Add</button>
+        </li>
+        
+        <li style="padding: 5px;">
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" id="search" type="search" placeholder="Search" 
+                [(ngModel)]="searchstr" [ngModelOptions]="{standalone: true}"  aria-label="Search">
+                
+              </form>
+        </li>
+        <li class="nav-item" style="padding: 5px;">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="search()">Search</button>
+        </li>
+        <li class="nav-item" style="padding: 5px;">
+            <button class="btn btn-outline-success my-2 my-sm-0" (click)="clear()">Clear</button>
+        </li>
+        
+       
+      </ul>
+     
+    </div>
+  </nav>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col"><button id="nameSort" (click)="nameSort()">Department Name</button></th>
+       <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody *ngFor ="let obj of tableList;index as i">
+      <!-- <div *ngFor ="let obj of tableList;index as i"> -->
+        <tr>
+        <th scope="row">{{i + 1 + (currPage-1)*5}}</th>
+        <td>{{obj.name}}</td>
+        <td> <button type="button" class="btn btn-danger" (click)="delete(obj.id)">Delete</button>
+            <button type="button" class="btn btn-info" routerLink="/edit-department/{{obj.id}}">Edit</button>
+        </td>
+        </tr>
+    </tbody>
+  </table>
+  <nav aria-label="Page navigation example" style="margin-left: 30%">
+    <ul class="pagination">
+      <li class="page-item">
+        
+        <a class="page-link" (click)="first()" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+          <span class="sr-only">First</span>
+        </a>
+      </li>
+      
+      
+      <li class="page-item" >
+        <div *ngIf='currPage==1'> 
+        <a class="page-link disabled"  aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+          <span class="sr-only">Previous</span>
+        </a></div>
+        <div *ngIf='currPage!=1'> 
+          <a class="page-link" (click)="previous()" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+          </a></div>
+      </li>
+      
+      <li class="page-item" >
+        <div *ngIf='currPage==lastPage'> 
+        <a class="page-link disabled"  aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+          <span class="sr-only">Next</span>
+        </a></div>
+        <div *ngIf='currPage!=lastPage'> 
+          <a class="page-link" (click)="next()" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Next</span>
+          </a></div>
+      </li>
+
+      <li class="page-item">
+        
+        <a class="page-link" (click)="last()" aria-label="Previous">
+          <span class="sr-only">Last</span>
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+      
+    </ul>
+  </nav>
+  <p style="margin-left: 35%">Showing page {{currPage}} of {{lastPage}}</p>

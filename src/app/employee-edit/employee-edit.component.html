@@ -1,0 +1,27 @@
+<form>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Employee ID</label>
+      <input type="email" [(ngModel)]="id" readonly [ngModelOptions]="{standalone: true}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      <small id="emailHelp" class="form-text text-muted">Employee ID's are unique and private.</small>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Employee Name</label>
+      <input type="text" [(ngModel)]="name" [ngModelOptions]="{standalone: true}" class="form-control" id="exampleInputPassword1" >
+    </div>
+    <form class="form-inline">
+      <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Employee Age</label>
+      <select class="custom-select my-1 mr-sm-2" 
+      id="inlineFormCustomSelectPref" [(ngModel)]="age" [ngModelOptions]="{standalone: true}">
+      
+        <!-- <option selected>Select..</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option> -->
+       <option div *ngFor='let in of counter(100) ;let i = index' value={{i}}>{{i}}</option>
+        
+      </select>
+  </form>
+    <button (click)="submit()" type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary" routerLink="/employees">Back</button>
+</form>
+
